@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // JSON məlumatlarını qəbul etmək üçün
 app.use(express.json());
@@ -73,5 +73,5 @@ Password: ${passwordLength}`;
 
 // Serveri başladırıq
 app.listen(PORT, () => {
-  console.log(`Simulation server: http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
