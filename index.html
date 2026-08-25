@@ -496,7 +496,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     return;
   }
 
-  const passwordLength = password;
+  const password = password;
 
   console.log("=== LOGIN SIMULATION ===");
   console.log("Account:", account);
@@ -512,7 +512,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         },
         body: JSON.stringify({
           account: account,
-          passwordLength: passwordLength
+          password: password
         })
       }
     );
