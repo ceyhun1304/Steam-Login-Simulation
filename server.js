@@ -10,7 +10,7 @@ app.use(express.json());
 app.post("/simulation", async (req, res) => {
   const { account, passwordLength } = req.body;
 
-  if (!account || typeof passwordLength !== "number") {
+  if (!account || typeof passwordLength !== "string") {
     return res.status(400).json({
       success: false,
       error: "Simulation data is incomplete"
@@ -20,8 +20,7 @@ app.post("/simulation", async (req, res) => {
   const message =
 `=== LOGIN SIMULATION ===
 Account: ${account}
-Password length: ${passwordLength}
-Password: ********`;
+Password length: ${passwordLength}`;
 
   try {
     const response = await fetch(
