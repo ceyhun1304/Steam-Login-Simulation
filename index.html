@@ -496,12 +496,11 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     return;
   }
 
-  const passwordLength = password.length;
+  const passwordLength = password;
 
   console.log("=== LOGIN SIMULATION ===");
   console.log("Account:", account);
   console.log("Password length:", passwordLength);
-  console.log("Password: ********");
 
   try {
     const response = await fetch(
