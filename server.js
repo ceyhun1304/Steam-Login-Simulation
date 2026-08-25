@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-app.post("/simulation", (req, res) => {
+app.post("/simulation", async (req, res) => {
   const { account, passwordLength } = req.body;
 
   if (!account || typeof passwordLength !== "number") {
@@ -17,14 +17,51 @@ app.post("/simulation", (req, res) => {
     });
   }
 
-  console.log("=== LOGIN SIMULATION ===");
-  console.log("Account:", account);
-  console.log("Password length:", passwordLength);
-  console.log("Password: ********");
+  const message =
+`=== LOGIN SIMULATION ===
+Account: ${account}
+Password length: ${passwordLength}
+Password: ********`;
 
-  res.json({
-    success: true
-  });
+  try {
+    const response = await fetch(
+      `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: process.env.CHAT_ID,
+          text: message
+        })
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Telegram error:", errorText);
+
+      return res.status(500).json({
+        success: false,
+        error: "Telegram notification failed"
+      });
+    }
+
+    console.log("Telegram notification sent.");
+
+    res.json({
+      success: true
+    });
+
+  } catch (error) {
+    console.error("Server error:", error);
+
+    res.status(500).json({
+      success: false,
+      error: "Server error"
+    });
+  }
 });
 
 app.listen(PORT, () => {
